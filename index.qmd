@@ -1,0 +1,88 @@
+---
+title: "Main page"
+format: html
+editor: visual
+---
+
+## Microeukaryote deep-sea database curation project
+
+Pending documentation of key steps we will take to curate deep-sea eukaryotes.
+
+## 18S rRNA gene (V4 region)
+
+1.  Molecular ecology paper ASV tables
+2.  Get reference sequences from ASV determination, collect this information. Once this table is completed, upload to Zenodo. Decide on what a "complete" package for this is. (a) fasta sequences, (b) taxonomic IDs, (c) ASV document that can be joined with future iterations of 18S, (d) QIIME2 file
+3.  Organize by families or classes. 4 *Pick how to triage these families or classes*
+4.  For the taxonomic assignment from PR2, what other information does PR2 give?
+5.  Literature search, what else do we know about the ASV?
+
+## ASV table
+
+
+[Data are all available on Zenodo](https://zenodo.org/records/59596940) and code to reproduce microeuk deep-sea survey are [available on Github](https://github.com/shu251/microeuk-amplicon-survey).
+
+### Download qiime2 data from microeuk survey
+
+First, download `qiime2-output-files_Hu-et-al.tar` from Zenodo link, extract files.
+
+```
+mkdir qiime2-output
+mv qiime2-output-files_Hu-et-al.tar qiime2-output
+cd qiime2-output 
+tar -xf qiime2-output-files_Hu-et-al.tar
+```
+
+Since DADA2 determination of ASVs is most appropriate by sequence library run, there are three separate ASV datasets. These were merged to create the `microeuk-merged` data.
+
+
+### Extract fasta files for reference database
+
+You do not need QIIME2 installed to obtain the reference sequences. This can be extracted like a normal zip file. Move the reference sequences to the qiime2 output directory.
+
+```
+unzip microeuk-merged-ref-seqs.qza
+mv a7d9b643-92c2-4be8-ac4b-c62b142474e4/data/dna-sequences.fasta microeuks-ref-seqs.fasta
+```
+
+Next steps involve merging the above sequence files with the count files from the original DADA2 count output.
+
+### Use R to merge with taxonomic IDs
+
+Load libraries
+```{r}
+library(tidyverse)
+```
+
+
+Import ASV table
+```{r}
+asv_table <- read_delim("input-data/microeuk-merged-asv-table.tsv", skip = 1)
+# head(asv_table)
+```
+
+Import taxonomy information
+```{r}
+tax_table <- read_delim("input-data/taxonomy.tsv")
+```
+
+Import metadata
+```{r}
+metadata <- read_delim("input-data/samplelist-metadata.csv")
+head(metadata)
+
+unique(metadata$SITE) # Remove "substrate", "control", and "Laboratory" samples
+unique(metadata$Sample_or_Control) # Remove "Control" samples
+unique(metadata$SAMPLETYPE) # only have Background, Plume, or vent samples
+```
+
+Combine the above three table types. This is our base reference database. 
+
+## Trees
+
+## Open tree of life
+
+Explore the [Open tree of life](https://tree.opentreeoflife.org/opentree/argus/opentree14.9@ott93302) website. As specific branches we want to explore will be covered on this website and we plan to submit projects as well. Therefore, we need to be aware of the requirements for submission.
+
+Detailed information on how to submit can be found [here](https://github.com/OpenTreeOfLife/opentree/wiki/Submitting-phylogenies-to-Open-Tree-of-Life). You'll need a GitHub account to access.
+
+## Contributors
