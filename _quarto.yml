@@ -5,7 +5,7 @@ project:
     - index.qmd
 
 website:
-  title: "Microeukaryote deep-sea database"
+  title: "Database Darkly"
   navbar:
     left:
       - href: index.qmd
