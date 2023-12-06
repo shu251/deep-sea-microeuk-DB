@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Database Darkly",
+    "section": "",
+    "text": "Pending documentation of key steps we will take to curate deep-sea eukaryotes."
+  },
+  {
+    "objectID": "index.html#microeukaryote-deep-sea-database-curation-project",
+    "href": "index.html#microeukaryote-deep-sea-database-curation-project",
+    "title": "Database Darkly",
+    "section": "",
+    "text": "Pending documentation of key steps we will take to curate deep-sea eukaryotes."
+  },
+  {
+    "objectID": "index.html#s-rrna-gene-v4-region",
+    "href": "index.html#s-rrna-gene-v4-region",
+    "title": "Database Darkly",
+    "section": "2 18S rRNA gene (V4 region)",
+    "text": "2 18S rRNA gene (V4 region)\n\nMolecular ecology paper ASV tables\nGet reference sequences from ASV determination, collect this information. Once this table is completed, upload to Zenodo. Decide on what a “complete” package for this is. (a) fasta sequences, (b) taxonomic IDs, (c) ASV document that can be joined with future iterations of 18S, (d) QIIME2 file\nOrganize by families or classes. 4 Pick how to triage these families or classes\nFor the taxonomic assignment from PR2, what other information does PR2 give?\nLiterature search, what else do we know about the ASV?"
+  },
+  {
+    "objectID": "index.html#asv-table",
+    "href": "index.html#asv-table",
+    "title": "Database Darkly",
+    "section": "3 ASV table",
+    "text": "3 ASV table\nData are all available on Zenodo and code to reproduce microeuk deep-sea survey are available on Github.\n\n3.1 Download qiime2 data from microeuk survey\nFirst, download qiime2-output-files_Hu-et-al.tar from Zenodo link, extract files.\nmkdir qiime2-output\nmv qiime2-output-files_Hu-et-al.tar qiime2-output\ncd qiime2-output \ntar -xf qiime2-output-files_Hu-et-al.tar\nSince DADA2 determination of ASVs is most appropriate by sequence library run, there are three separate ASV datasets. These were merged to create the microeuk-merged data.\n\n\n3.2 Extract fasta files for reference database\nYou do not need QIIME2 installed to obtain the reference sequences. This can be extracted like a normal zip file. Move the reference sequences to the qiime2 output directory.\nunzip microeuk-merged-ref-seqs.qza\nmv a7d9b643-92c2-4be8-ac4b-c62b142474e4/data/dna-sequences.fasta microeuks-ref-seqs.fasta\nNext steps involve merging the above sequence files with the count files from the original DADA2 count output.\n\n\n3.3 Use R to merge with taxonomic IDs\nLoad libraries\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nImport ASV table\n\nasv_table &lt;- read_delim(\"input-data/microeuk-merged-asv-table.tsv\", skip = 1)\n\nRows: 17934 Columns: 98\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \"\\t\"\nchr  (1): #OTU ID\ndbl (97): 101_GR_substrate_MC3_Riftia_6_0_Jun2021, 102_GR_substrate_MC3_Shel...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# head(asv_table)\n\nImport taxonomy information\n\ntax_table &lt;- read_delim(\"input-data/taxonomy.tsv\")\n\nRows: 17934 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \"\\t\"\nchr (2): Feature ID, Taxon\ndbl (1): Consensus\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nImport metadata\n\nmetadata &lt;- read_delim(\"input-data/samplelist-metadata.csv\")\n\nRows: 100 Columns: 20\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (17): SAMPLE, VENT, COORDINATES, SITE, Sample_or_Control, SAMPLEID, SAMP...\ndbl  (3): ref_num, YEAR, Perc\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nhead(metadata)\n\n# A tibble: 6 × 20\n  ref_num SAMPLE   VENT  COORDINATES SITE  Sample_or_Control SAMPLEID SAMPLETYPE\n    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;     \n1       1 Axial_B… Deep… 46.27389 N… Axial Sample            BSW1500m Background\n2       2 Axial_A… Anem… 45.9335667… Axial Sample            Anemone… Plume     \n3       3 Axial_A… Anem… 45.9332 N … Axial Sample            FS891    Vent      \n4       4 Axial_B… Boca  45.927692 … Axial Sample            FS905    Vent      \n5       5 Axial_D… Depe… 45.87992 N… Axial Sample            FS900    Vent      \n6       6 Axial_E… El G… 45.926575 … Axial Sample            FS896    Vent      \n# ℹ 12 more variables: DEPTH &lt;chr&gt;, YEAR &lt;dbl&gt;, TEMP &lt;chr&gt;, pH &lt;chr&gt;,\n#   Perc &lt;dbl&gt;, Mg &lt;chr&gt;, H2. &lt;chr&gt;, H2S &lt;chr&gt;, CH4 &lt;chr&gt;, ProkConc &lt;chr&gt;,\n#   Sample_actual &lt;chr&gt;, Type &lt;chr&gt;\n\nunique(metadata$SITE) # Remove \"substrate\", \"control\", and \"Laboratory\" samples\n\n[1] \"Axial\"      \"control\"    \"GordaRidge\" \"Laboratory\" \"Piccard\"   \n[6] \"substrate\"  \"VonDamm\"   \n\nunique(metadata$Sample_or_Control) # Remove \"Control\" samples\n\n[1] \"Sample\"  \"Control\"\n\nunique(metadata$SAMPLETYPE) # only have Background, Plume, or vent samples\n\n[1] \"Background\"     \"Plume\"          \"Vent\"           \"Control\"       \n[5] \"Incubation\"     \"Microcolonizer\"\n\n\nCombine the above three table types. This is our base reference database."
+  },
+  {
+    "objectID": "index.html#trees",
+    "href": "index.html#trees",
+    "title": "Database Darkly",
+    "section": "4 Trees",
+    "text": "4 Trees"
+  },
+  {
+    "objectID": "index.html#open-tree-of-life",
+    "href": "index.html#open-tree-of-life",
+    "title": "Database Darkly",
+    "section": "5 Open tree of life",
+    "text": "5 Open tree of life\nExplore the Open tree of life website. As specific branches we want to explore will be covered on this website and we plan to submit projects as well. Therefore, we need to be aware of the requirements for submission.\nDetailed information on how to submit can be found here. You’ll need a GitHub account to access."
+  },
+  {
+    "objectID": "index.html#contributors",
+    "href": "index.html#contributors",
+    "title": "Database Darkly",
+    "section": "6 Contributors",
+    "text": "6 Contributors"
+  }
+]
