@@ -1,0 +1,25 @@
+---
+title: "Database main page"
+format: html
+editor: visual
+---
+
+# Major taxonomic groups
+
+_Visual summaries of what groups are present?_
+
+## Explanation of taxonomic levels in database
+
+## Compare with PR2
+
+_Explore alongside PR2 database_ See R package for this
+
+# Tree of life
+
+
+
+## Open tree of life
+
+Explore the [Open tree of life](https://tree.opentreeoflife.org/opentree/argus/opentree14.9@ott93302) website. As specific branches we want to explore will be covered on this website and we plan to submit projects as well. Therefore, we need to be aware of the requirements for submission.
+
+Detailed information on how to submit can be found [here](https://github.com/OpenTreeOfLife/opentree/wiki/Submitting-phylogenies-to-Open-Tree-of-Life). You'll need a GitHub account to access.
