@@ -16,10 +16,49 @@ _Visual summaries of what groups are present?_
 
 _Explore alongside PR2 database_ See R package for this
 
+```{r}
+# install.packages("devtools")
+# devtools::install_github("pr2database/pr2database")
+library(pr2database)
+library(tidyverse)
+```
+Take a look at the whole pr2 database.
+```{r}
+pr2 <- pr2_database()
+glimpse(pr2)
+```
+```{r}
+unique(pr2$mixoplankton)
+```
+
+Isolate metadata that we want about the taxonomic group and alternate taxonomic names.
+
+```{r}
+load(file = "input-data/taxonomic-lineages.RData")
+colnames(taxonomic_lineages)
+```
 
 
+```{r}
+pr2_metadata <- pr2 %>% 
+  select(Domain = domain, Supergroup = supergroup, Division = division, Phylum = subdivision, Class = class, Order = order, Family = family, Genus = genus, Species = species, gb_taxonomy, metadata_remark, eukribo_UniEuk_taxonomy_string, silva_taxonomy, species_url)
+```
 
-# Tree of life
+```{r}
+taxonomic_lineages_pr2 <- taxonomic_lineages %>% 
+  left_join(pr2_metadata)
+```
+```{r}
+glimpse(taxonomic_lineages_pr2)
+```
+```{r}
+# write.csv(taxonomic_lineages_pr2, file = "taxonomic-assignments-p2.csv")
+```
+
+
+# Phylogenetic relatedness by 18S rRNA gene
+
+
 
 
 ## Open tree of life
@@ -27,3 +66,5 @@ _Explore alongside PR2 database_ See R package for this
 Explore the [Open tree of life](https://tree.opentreeoflife.org/opentree/argus/opentree14.9@ott93302) website. As specific branches we want to explore will be covered on this website and we plan to submit projects as well. Therefore, we need to be aware of the requirements for submission.
 
 Detailed information on how to submit can be found [here](https://github.com/OpenTreeOfLife/opentree/wiki/Submitting-phylogenies-to-Open-Tree-of-Life). You'll need a GitHub account to access.
+
+https://cran.r-project.org/web/packages/rotl/index.html

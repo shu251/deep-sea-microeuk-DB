@@ -3,6 +3,8 @@ project:
   output-dir: docs
   render:
     - index.qmd
+    - how-to.qmd
+    - db-main.qmd
 
 website:
   title: "Database Darkly"
@@ -10,11 +12,15 @@ website:
     left:
       - href: index.qmd
         text: Main
+      - href: how-to.qmd
+        text: How to use
+      - href: db-main.qmd
+        text: Database
 
 format:
   html:
-    theme: slate
-    css: slate.scss
+    theme: flatly
+    css: solar.scss
     toc: true
     toc-location: left
     number-sections: true

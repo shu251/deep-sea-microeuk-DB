@@ -77,12 +77,15 @@ Combine the above three table types. This is our base reference database.
 
 ```{r}
 taxonomic_lineages <- tax_table %>% 
-  select(-Consensus) %>% 
-  distinct() %>% 
-  separate(Taxon, into = c("Domain", "Supergroup", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";", remove = FALSE)
+  select(-Consensus, -`Feature ID`) %>% 
+  separate(Taxon, into = c("Domain", "Division", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";", remove = FALSE) %>% 
+  filter(Domain == "Eukaryota") %>%
+  distinct()
 ```
+
+
 ```{r}
-write.csv(taxonomic_lineages, file = "taxonomic-assignments.csv")
+# save(taxonomic_lineages, file = "input-data/taxonomic-lineages.RData")
 ```
 
 
