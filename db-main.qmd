@@ -29,6 +29,9 @@ glimpse(pr2)
 ```
 ```{r}
 unique(pr2$mixoplankton)
+
+pr2 %>% 
+  filter(sequence_hash == "047d947dee605a64843f2332d7ccd814")
 ```
 
 Isolate metadata that we want about the taxonomic group and alternate taxonomic names.
@@ -50,6 +53,7 @@ taxonomic_lineages_pr2 <- taxonomic_lineages %>%
 ```
 ```{r}
 glimpse(taxonomic_lineages_pr2)
+dim(taxonomic_lineages)
 ```
 ```{r}
 # write.csv(taxonomic_lineages_pr2, file = "taxonomic-assignments-p2.csv")

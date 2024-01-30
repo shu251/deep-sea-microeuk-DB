@@ -40,6 +40,11 @@ mv a7d9b643-92c2-4be8-ac4b-c62b142474e4/data/dna-sequences.fasta microeuks-ref-s
 
 Next steps involve merging the above sequence files with the count files from the original DADA2 count output.
 
+```{r}
+
+```
+
+
 ### Use R to merge with taxonomic IDs
 
 Load libraries
@@ -59,6 +64,7 @@ Import taxonomy information
 
 ```{r}
 tax_table <- read_delim("input-data/taxonomy.tsv")
+glimpse(tax_table)
 ```
 
 Import metadata
