@@ -6,15 +6,13 @@ editor: visual
 
 # Major taxonomic groups
 
-_Visual summaries of what groups are present?_
+*Visual summaries of what groups are present?*
 
 ## Taxonomic levels in database
 
-
-
 ## Compare with PR2
 
-_Explore alongside PR2 database_ See R package for this
+*Explore alongside PR2 database* See R package for this
 
 ```{r}
 # install.packages("devtools")
@@ -22,11 +20,14 @@ _Explore alongside PR2 database_ See R package for this
 library(pr2database)
 library(tidyverse)
 ```
+
 Take a look at the whole pr2 database.
+
 ```{r}
 pr2 <- pr2_database()
 glimpse(pr2)
 ```
+
 ```{r}
 unique(pr2$mixoplankton)
 
@@ -41,7 +42,6 @@ load(file = "input-data/taxonomic-lineages.RData")
 colnames(taxonomic_lineages)
 ```
 
-
 ```{r}
 pr2_metadata <- pr2 %>% 
   select(Domain = domain, Supergroup = supergroup, Division = division, Phylum = subdivision, Class = class, Order = order, Family = family, Genus = genus, Species = species, gb_taxonomy, metadata_remark, eukribo_UniEuk_taxonomy_string, silva_taxonomy, species_url)
@@ -51,19 +51,26 @@ pr2_metadata <- pr2 %>%
 taxonomic_lineages_pr2 <- taxonomic_lineages %>% 
   left_join(pr2_metadata)
 ```
+
 ```{r}
 glimpse(taxonomic_lineages_pr2)
 dim(taxonomic_lineages)
 ```
+
 ```{r}
 # write.csv(taxonomic_lineages_pr2, file = "taxonomic-assignments-p2.csv")
 ```
 
+# Compare with Functional Trait Database
+
+```{r}
+library(tidyverse)
+fxn_trait <- read.delim("input-data/functional-traits-ramond.csv", sep = ";")
+glimpse(fxn_trait)
+```
+
 
 # Phylogenetic relatedness by 18S rRNA gene
-
-
-
 
 ## Open tree of life
 
