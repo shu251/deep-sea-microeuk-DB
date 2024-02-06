@@ -64,10 +64,26 @@ dim(taxonomic_lineages)
 # Compare with Functional Trait Database
 
 ```{r}
-library(tidyverse)
 fxn_trait <- read.delim("input-data/functional-traits-ramond.csv", sep = ";")
 glimpse(fxn_trait)
 ```
+
+# Compare with PIDA database
+
+
+Datbase explores microbe-microbe interactions. 
+
+Bjorbækmo MFM, Evenstad A, Røsæg LL, Krabberød AK, Logares R. The planktonic protist interactome: where do we stand after a century of research? ISME J 2020; 14: 544–559.
+
+Reference: https://github.com/ramalok/PIDA/actions
+
+Import PIDA database. 
+
+```{r}
+pida <- read.csv("input-data/PIDA_v_1.11_FORMATTED.csv")
+head(pida)
+```
+
 
 
 # Phylogenetic relatedness by 18S rRNA gene
