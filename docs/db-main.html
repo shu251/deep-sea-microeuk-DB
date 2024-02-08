@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,7 +89,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -144,7 +145,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#major-taxonomic-groups" id="toc-major-taxonomic-groups" class="nav-link active" data-scroll-target="#major-taxonomic-groups"><span class="header-section-number">1</span> Major taxonomic groups</a>
   <ul class="collapse">
   <li><a href="#taxonomic-levels-in-database" id="toc-taxonomic-levels-in-database" class="nav-link" data-scroll-target="#taxonomic-levels-in-database"><span class="header-section-number">1.1</span> Taxonomic levels in database</a></li>
-  <li><a href="#compare-with-pr2" id="toc-compare-with-pr2" class="nav-link" data-scroll-target="#compare-with-pr2"><span class="header-section-number">1.2</span> Compare with PR2</a></li>
+  <li><a href="#compare-with-pr2" id="toc-compare-with-pr2" class="nav-link" data-scroll-target="#compare-with-pr2"><span class="header-section-number">1.2</span> Compare with PR2</a>
+  <ul class="collapse">
+  <li><a href="#searching-the-pr2-database" id="toc-searching-the-pr2-database" class="nav-link" data-scroll-target="#searching-the-pr2-database"><span class="header-section-number">1.2.1</span> Searching the PR2 database</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#compare-with-functional-trait-database" id="toc-compare-with-functional-trait-database" class="nav-link" data-scroll-target="#compare-with-functional-trait-database"><span class="header-section-number">2</span> Compare with Functional Trait Database</a></li>
   <li><a href="#compare-with-pida-database" id="toc-compare-with-pida-database" class="nav-link" data-scroll-target="#compare-with-pida-database"><span class="header-section-number">3</span> Compare with PIDA database</a></li>
@@ -188,29 +192,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compare-with-pr2" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="compare-with-pr2"><span class="header-section-number">1.2</span> Compare with PR2</h2>
 <p><em>Explore alongside PR2 database</em> See R package for this</p>
+<p>Set up your R environment.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("pr2database/pr2database")</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pr2database)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'stringr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -218,10 +211,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<p>Take a look at the whole pr2 database.</p>
+<section id="searching-the-pr2-database" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="searching-the-pr2-database"><span class="header-section-number">1.2.1</span> Searching the PR2 database</h3>
+<p>Take a look at the whole pr2 database. Import and set as <code>pr2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pr2 <span class="ot">&lt;-</span> <span class="fu">pr2_database</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pr2 <span class="ot">&lt;-</span> <span class="fu">pr2_database</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 221,085
 Columns: 95
@@ -321,48 +316,58 @@ $ silva_taxonomy                 &lt;chr&gt; "Eukaryota;SAR;Alveolata;Dinoflagel
 $ organelle_code                 &lt;chr&gt; "", "", "", "", "", "", "", "", "", "",…
 $ species_url                    &lt;glue&gt; "&lt;a href='https://www.marinespecies.or…</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View(pr2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Use <code>View()</code> to search the database, or <code>filter()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pr2<span class="sc">$</span>mixoplankton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pr2 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(family <span class="sc">==</span> <span class="st">"Pseudocolliniidae"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] NA      "CM"    "eSNCM" "pSNCM" "GNCM" </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pr2 <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sequence_hash <span class="sc">==</span> <span class="st">"047d947dee605a64843f2332d7ccd814"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 0 × 95
-# ℹ 95 variables: pr2_accession &lt;chr&gt;, domain &lt;chr&gt;, supergroup &lt;chr&gt;,
-#   division &lt;chr&gt;, subdivision &lt;chr&gt;, class &lt;chr&gt;, order &lt;chr&gt;, family &lt;chr&gt;,
-#   genus &lt;chr&gt;, species &lt;chr&gt;, genbank_accession &lt;chr&gt;, start &lt;dbl&gt;,
+<pre><code># A tibble: 25 × 95
+   pr2_accession domain supergroup division subdivision class order family genus
+   &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 HQ591486.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 2 HQ591477.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 3 HQ591480.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 4 HM561004.1.9… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 5 HQ591482.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 6 HQ591473.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 7 HQ591485.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 8 HQ591474.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+ 9 HQ591479.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+10 HQ591472.1.1… Eukar… TSAR       Alveola… Ciliophora  Olig… Apos… Pseud… Pseu…
+# ℹ 15 more rows
+# ℹ 86 more variables: species &lt;chr&gt;, genbank_accession &lt;chr&gt;, start &lt;dbl&gt;,
 #   end &lt;dbl&gt;, label &lt;chr&gt;, gene &lt;chr&gt;, organelle &lt;chr&gt;,
 #   reference_sequence &lt;int&gt;, added_version &lt;chr&gt;, edited_version &lt;chr&gt;,
 #   edited_by &lt;chr&gt;, edited_remark &lt;chr&gt;, remark &lt;chr&gt;, taxo_id &lt;int&gt;,
-#   taxo_edited_version &lt;chr&gt;, taxo_edited_by &lt;chr&gt;, taxo_remark &lt;chr&gt;, …</code></pre>
+#   taxo_edited_version &lt;chr&gt;, taxo_edited_by &lt;chr&gt;, taxo_remark &lt;chr&gt;,
+#   reference &lt;chr&gt;, mixoplankton &lt;chr&gt;, worms_id &lt;int&gt;, worms_marine &lt;chr&gt;, …</code></pre>
 </div>
 </div>
 <p>Isolate metadata that we want about the taxonomic group and alternate taxonomic names.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"input-data/taxonomic-lineages.RData"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(taxonomic_lineages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"input-data/taxonomic-lineages.RData"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(taxonomic_lineages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Taxon"    "Domain"   "Division" "Phylum"   "Class"    "Order"    "Family"  
 [8] "Genus"    "Species" </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pr2_metadata <span class="ot">&lt;-</span> pr2 <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Domain =</span> domain, <span class="at">Supergroup =</span> supergroup, <span class="at">Division =</span> division, <span class="at">Phylum =</span> subdivision, <span class="at">Class =</span> class, <span class="at">Order =</span> order, <span class="at">Family =</span> family, <span class="at">Genus =</span> genus, <span class="at">Species =</span> species, gb_taxonomy, metadata_remark, eukribo_UniEuk_taxonomy_string, silva_taxonomy, species_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pr2_metadata <span class="ot">&lt;-</span> pr2 <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Domain =</span> domain, <span class="at">Supergroup =</span> supergroup, <span class="at">Division =</span> division, <span class="at">Phylum =</span> subdivision, <span class="at">Class =</span> class, <span class="at">Order =</span> order, <span class="at">Family =</span> family, <span class="at">Genus =</span> genus, <span class="at">Species =</span> species, gb_taxonomy, metadata_remark, eukribo_UniEuk_taxonomy_string, silva_taxonomy, species_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>taxonomic_lineages_pr2 <span class="ot">&lt;-</span> taxonomic_lineages <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pr2_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>taxonomic_lineages_pr2 <span class="ot">&lt;-</span> taxonomic_lineages <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pr2_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(Domain, Division, Phylum, Class, Order, Family,
 Genus, Species)`</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(taxonomic_lineages_pr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(taxonomic_lineages_pr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 40,013
 Columns: 15
@@ -382,21 +387,23 @@ $ eukribo_UniEuk_taxonomy_string &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,
 $ silva_taxonomy                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "Eukaryota;…
 $ species_url                    &lt;glue&gt; NA, NA, NA, NA, NA, NA, NA, "Dino-Grou…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(taxonomic_lineages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(taxonomic_lineages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1094    9</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write.csv(taxonomic_lineages_pr2, file = "taxonomic-assignments-p2.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write.csv(taxonomic_lineages_pr2, file = "taxonomic-assignments-p2.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 </section>
 <section id="compare-with-functional-trait-database" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Compare with Functional Trait Database</h1>
+<p>Import the data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fxn_trait <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"input-data/functional-traits-ramond.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(fxn_trait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fxn_trait <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"input-data/functional-traits-ramond.csv"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(fxn_trait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,007
 Columns: 37
@@ -439,6 +446,85 @@ $ Ploidy                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 $ Genome_Size             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fxn_trait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Lineage"                 "Fam"                    
+ [3] "Taxogroup"               "Taxo1"                  
+ [5] "Last"                    "SizeMin"                
+ [7] "SizeMax"                 "Cover"                  
+ [9] "Shape"                   "Spicule"                
+[11] "Symmetry"                "Polarity"               
+[13] "Colony"                  "Motility"               
+[15] "Chloroplast"             "Plast_Origin"           
+[17] "Ingestion"               "Behaviour"              
+[19] "Mutualistic_Host"        "Symbiontic"             
+[21] "Symbiont_Location"       "Host_Specialisation"    
+[23] "Symbiont_Specialisation" "Prey_Specialisation"    
+[25] "Mucilage"                "Chemical_Signal"        
+[27] "Nutrient_Afinity"        "Oxygen_Tolerance"       
+[29] "Salinity"                "Temperature"            
+[31] "Depth"                   "Toxygenity"             
+[33] "Benthic_Phase"           "Longevity"              
+[35] "Cyst_Spore"              "Ploidy"                 
+[37] "Genome_Size"            </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fxn_trait <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Pseudocolliniidae"</span>, Lineage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Lineage                 Fam                     Taxogroup              
+ [4] Taxo1                   Last                    SizeMin                
+ [7] SizeMax                 Cover                   Shape                  
+[10] Spicule                 Symmetry                Polarity               
+[13] Colony                  Motility                Chloroplast            
+[16] Plast_Origin            Ingestion               Behaviour              
+[19] Mutualistic_Host        Symbiontic              Symbiont_Location      
+[22] Host_Specialisation     Symbiont_Specialisation Prey_Specialisation    
+[25] Mucilage                Chemical_Signal         Nutrient_Afinity       
+[28] Oxygen_Tolerance        Salinity                Temperature            
+[31] Depth                   Toxygenity              Benthic_Phase          
+[34] Longevity               Cyst_Spore              Ploidy                 
+[37] Genome_Size            
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<p>The above returns no findings, so the species does not exist in this database or is under a different name.</p>
+<p>We can try again with <code>View()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View(fxn_trait)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using a partial text match, I see that <code>Eukaryota|Harosa|Alveolata|Ciliophora|Intramacronucleata|Oligohymenophorea|Apostomatida|Colliniidae|Pseudocollinia</code> is an entry. But now we need to cross check with other rows in our database and see if <code>Colliniidae</code> was a different name at some point. In fact it was!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fxn_trait <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Colliniidae"</span>, Lineage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                             Lineage
+1                Eukaryota|Harosa|Alveolata|Ciliophora|Intramacronucleata|Oligohymenophorea|Apostomatida|Colliniidae
+2 Eukaryota|Harosa|Alveolata|Ciliophora|Intramacronucleata|Oligohymenophorea|Apostomatida|Colliniidae|Pseudocollinia
+         Fam  Taxogroup        Taxo1           Last SizeMin SizeMax Cover
+1 Alveolates Ciliophora Apostomatida    Colliniidae      10     100 Naked
+2 Alveolates Ciliophora Apostomatida Pseudocollinia      21      39 Naked
+      Shape Spicule    Symmetry    Polarity Colony Motility Chloroplast
+1 Elongated       0 Asymetrical Heteropolar   None Attached           0
+2 Elongated       0 Asymetrical Heteropolar   None Attached           0
+  Plast_Origin   Ingestion             Behaviour Mutualistic_Host Symbiontic
+1         None Myzocytotic Passive_Ambush_Feeder             &lt;NA&gt;   Parasite
+2         None Myzocytotic Passive_Ambush_Feeder             &lt;NA&gt;   Parasite
+  Symbiont_Location Host_Specialisation Symbiont_Specialisation
+1              &lt;NA&gt;                &lt;NA&gt;                    &lt;NA&gt;
+2              &lt;NA&gt;                &lt;NA&gt;                   Krill
+  Prey_Specialisation Mucilage Chemical_Signal Nutrient_Afinity
+1                &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;
+2                &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;
+  Oxygen_Tolerance Salinity Temperature Depth Toxygenity Benthic_Phase
+1             &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;
+2             &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;
+  Longevity Cyst_Spore Ploidy Genome_Size
+1        NA          1   &lt;NA&gt;          NA
+2        NA          1   &lt;NA&gt;          NA</code></pre>
+</div>
+</div>
+<p>Now we can take the above information and full in the other descriptive features.</p>
 </section>
 <section id="compare-with-pida-database" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Compare with PIDA database</h1>
@@ -447,8 +533,8 @@ $ Genome_Size             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 <p>Reference: https://github.com/ramalok/PIDA/actions</p>
 <p>Import PIDA database.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pida <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"input-data/PIDA_v_1.11_FORMATTED.csv"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pida <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"input-data/PIDA_v_1.11_FORMATTED.csv"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Observation.type Taxonomic.interaction Interaction Accession.org1
 1                1            Prot - Bac        symb           &lt;NA&gt;
@@ -507,7 +593,55 @@ $ Genome_Size             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 5                        Sediment samples from aquarium
 6                                collected from seaweed</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View(pida)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In the PIDA database, org 1 corresponds to the host, and org 2 corresponds to the symbiont. See the github page readme for a <a href="https://github.com/ramalok/PIDA?tab=readme-ov-file#columns-">complete description of the database here</a>.</p>
+<p>The below query doesn’t reveal anything.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pida <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Pseudocolli"</span>, Taxonomic.level.<span class="dv">3</span>..org2)) <span class="co">#this doesn't reveal anything.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Observation.type        Taxonomic.interaction   Interaction            
+ [4] Accession.org1          Taxonomic.level.1..org1 Taxonomic.level.2..org1
+ [7] Taxonomic.level.3..org1 Genus.org1              Species.org1           
+[10] Accession.org2          Taxonomic.level.1..org2 Taxonomic.level.2..org2
+[13] Taxonomic.level.3..org2 Genus.org2              Species.org2           
+[16] Reference               Link                    Database               
+[19] Interaction_ID          Ecological.interaction  Habitat                
+[22] Source                 
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pida <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Pseudocolli"</span>, Taxonomic.level.<span class="dv">2</span>..org2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Observation.type        Taxonomic.interaction   Interaction            
+ [4] Accession.org1          Taxonomic.level.1..org1 Taxonomic.level.2..org1
+ [7] Taxonomic.level.3..org1 Genus.org1              Species.org1           
+[10] Accession.org2          Taxonomic.level.1..org2 Taxonomic.level.2..org2
+[13] Taxonomic.level.3..org2 Genus.org2              Species.org2           
+[16] Reference               Link                    Database               
+[19] Interaction_ID          Ecological.interaction  Habitat                
+[22] Source                 
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<p>The below query doesn’t reveal anything, again.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pida <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Pseudocolli"</span>, Genus.org2)) <span class="co">#this doesn't reveal anything.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Observation.type        Taxonomic.interaction   Interaction            
+ [4] Accession.org1          Taxonomic.level.1..org1 Taxonomic.level.2..org1
+ [7] Taxonomic.level.3..org1 Genus.org1              Species.org1           
+[10] Accession.org2          Taxonomic.level.1..org2 Taxonomic.level.2..org2
+[13] Taxonomic.level.3..org2 Genus.org2              Species.org2           
+[16] Reference               Link                    Database               
+[19] Interaction_ID          Ecological.interaction  Habitat                
+[22] Source                 
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<p>When searching the database by text, only a close text match to <code>Pseudocohnilembus</code> in PIDA came up. This is a different organism. So we can determine that this is not related to the species in our database.</p>
 </section>
 <section id="phylogenetic-relatedness-by-18s-rrna-gene" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Phylogenetic relatedness by 18S rRNA gene</h1>
@@ -515,7 +649,7 @@ $ Genome_Size             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 <h2 data-number="4.1" class="anchored" data-anchor-id="open-tree-of-life"><span class="header-section-number">4.1</span> Open tree of life</h2>
 <p>Explore the <a href="https://tree.opentreeoflife.org/opentree/argus/opentree14.9@ott93302">Open tree of life</a> website. As specific branches we want to explore will be covered on this website and we plan to submit projects as well. Therefore, we need to be aware of the requirements for submission.</p>
 <p>Detailed information on how to submit can be found <a href="https://github.com/OpenTreeOfLife/opentree/wiki/Submitting-phylogenies-to-Open-Tree-of-Life">here</a>. You’ll need a GitHub account to access.</p>
-<p>https://cran.r-project.org/web/packages/rotl/index.html</p>
+<p>We need to figure out how to explore the Open Tree of Life R package. https://cran.r-project.org/web/packages/rotl/index.html</p>
 
 
 </section>
