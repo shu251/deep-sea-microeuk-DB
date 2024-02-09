@@ -1,0 +1,31 @@
+---
+title: "Database Taxa entries"
+format: html
+editor: visual
+---
+
+# Alveolata
+
+## Dinoflagellates
+
+## Ciliates
+
+## Apicomplexa
+
+# Amoebozoa
+
+# Apusozoa
+
+# Archaeplastida
+
+# Excavata
+
+# Hacrobia
+
+# Opisthokonta
+
+# Protalveolata
+
+# Rhizaria
+
+# Stramenopiles
