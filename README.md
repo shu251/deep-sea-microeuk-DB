@@ -1,5 +1,5 @@
 # Home of **Database Darkly**
 
-![](logo.jpg){fig-align="center" width="350"}
+![](logo.jpg){width="250"}
 
 Visit: <https://shu251.github.io/deep-sea-microeuk-DB/>
