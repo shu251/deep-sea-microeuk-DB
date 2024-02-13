@@ -4,13 +4,11 @@ format: html
 editor: visual
 ---
 
-Database Darkly provides insight into a deep-sea survey of microbial eukaryote sequences. Because these sequences belong to protistan species that we do not necessarily have microscopic images of or representatives in culture... we worked to compile what we know about each reference here. 
+Database Darkly provides insight into a deep-sea survey of microbial eukaryote sequences. Because these sequences belong to protistan species that we do not necessarily have microscopic images of or representatives in culture... we worked to compile what we know about each reference here.
 
-As a community, we hope that this information can be used to link across other studies so we can expand what we know about these environmental strains. 
-
+As a community, we hope that this information can be used to link across other studies so we can expand what we know about these environmental strains.
 
 # Compare with your data
-
 
 ## ASV table
 
@@ -43,7 +41,6 @@ Next steps involve merging the above sequence files with the count files from th
 ```{r}
 
 ```
-
 
 ### Use R to merge with taxonomic IDs
 
@@ -89,9 +86,6 @@ taxonomic_lineages <- tax_table %>%
   distinct()
 ```
 
-
 ```{r}
 # save(taxonomic_lineages, file = "input-data/taxonomic-lineages.RData")
 ```
-
-

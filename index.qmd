@@ -4,6 +4,13 @@ format: html
 editor: visual
 ---
 
+::: {style="float:right"}
+```{r, echo=FALSE, out.width= "250px", out.extra='style="float:left; padding:30px"'}
+knitr::include_graphics("logo.jpg")
+```
+:::
+
+
 # Microeukaryote deep-sea database curation project
 
 Curate and annotate what we know about deep-sea marine microbial eukaryotes. Much of what we know about deep-sea microorganisms comes from the biogeography and inferred ecology of environmental species or strains. This database originates from deep-sea marine habitats, specifically hydrothermal vents. Species and strains capture are assumed to be present in these environments; however what we know about their ecological roles remains understudied. This database project involves extensive literature searches, comparative analyses, and inventories of these species, so we can get closer to having a more complete understanding of the roles protists play in the deep ocean.
@@ -13,6 +20,8 @@ There are three primary goals of this project: (1) Complement our comprehensive 
 ### Origin of data
 
 An expansive 18S rRNA gene tag-sequencing survey of protists across four deep-sea hydrothermal vent fields (Piccard, Von Damm, Axial Seamount, and Gorda Ridge) demonstrated that the interface of deep seawater mixing with diffuse vent fluid contained a highly diverse and species rich protistan assemblage compared to deep background seawater.
+
+[Find the paper here](https://onlinelibrary.wiley.com/doi/full/10.1111/mec.16745)
 
 ### 18S rRNA gene (V4 region)
 
@@ -26,11 +35,10 @@ An expansive 18S rRNA gene tag-sequencing survey of protists across four deep-se
 
 ## Contributors
 
-Sarah Hu (PI, TAMU)
-Abby Day (Undergrad, TAMU)
-Madeleine Lerma (Undergrad, TAMU)
-Meagan Sonsel (Undergrad, TAMU)
-Siddarth Seshampally (Undergrad, TAMU)
-Alexis Adams (PhD student, TAMU)
-Kayla Nedd (PhD student, TAMU)
-
+* Sarah Hu (PI, TAMU)
+* Abby Day (Undergrad, TAMU)
+* Madeleine Lerma (Undergrad, TAMU)
+* Meagan Sonsel (Undergrad, TAMU)
+* Siddarth Seshampally (Undergrad, TAMU)
+* Alexis Adams (PhD student, TAMU)
+* Kayla Nedd (PhD student, TAMU)

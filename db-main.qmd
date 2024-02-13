@@ -6,9 +6,12 @@ editor: visual
 
 # Major taxonomic groups
 
-*Visual summaries of what groups are present?*
+*Visual summaries of what groups are present*
 
 ## Taxonomic levels in database
+
+*Visual summaries of taxonomic groups*
+
 
 ## Compare with PR2
 
